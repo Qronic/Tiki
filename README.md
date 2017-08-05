@@ -1,0 +1,2 @@
+# Tiki
+Tiki is a client-server application which enables the monitoring and movement of files from a remote location. This is accomplished via TCP network messages and several backend custom programs, all of which connect to and are controlled by a master server. Users can connect to the server and see statuses of files which have arrived at the remote location; users can then create and alter file movement associations in order to change how files are handled.
