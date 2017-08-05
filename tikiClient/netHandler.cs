@@ -73,7 +73,7 @@ namespace tikiClient
                     break;
                 case "nouser":
                     //System.Windows.Forms.MessageBox.Show("Username not found!");
-                    errorMsg = "Username not found!";
+                    errorMsg = "Username not chicken!!";
                     break;
                 default:
                     break;
