@@ -92,7 +92,7 @@ namespace tikiServer
                         clientMsg = clientMsg.Substring(0, clientMsg.IndexOf("#tiki#"));
                         Console.WriteLine(getTimeStamp() + "<Info> Received: " + clientMsg + " from clientID: " + myClient.connectionID);
                         netStream.Flush();
-                        string serverResponse = "Test received!$";
+                        string serverResponse = "#alert#Test received!#tiki#";
                         byte[] sendMsg = Encoding.ASCII.GetBytes(serverResponse);
                         netStream.Write(sendMsg, 0, sendMsg.Length);
                         netStream.Flush();

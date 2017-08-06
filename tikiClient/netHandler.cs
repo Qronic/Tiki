@@ -49,6 +49,7 @@ namespace tikiClient
                 netStream.Read(inStream, 0, clientSocket.ReceiveBufferSize);
                 string serverResponse = Encoding.ASCII.GetString(inStream);
                 serverResponse = serverResponse.Substring(0, serverResponse.IndexOf("#tiki#"));
+                serverMessageManager(serverResponse);
                 //System.Windows.Forms.MessageBox.Show("Client received: " + serverResponse + " from server!");
             }
             catch (Exception exc)
@@ -64,8 +65,12 @@ namespace tikiClient
 
         private static void serverMessageManager(string msg)
         {
-            string msgTag = msg.Substring(0, msg.IndexOf('#')); //gets the message tag, so we know what we are doing
-            switch (msg)
+            char[] toTrim = { '#' };
+            msg = msg.Trim(toTrim);
+            //System.Windows.Forms.MessageBox.Show("After trim msg is : " + msg);
+            string msgTag = msg.Substring(0, msg.IndexOf("#")); //gets the message tag, so we know what we are doing
+            System.Windows.Forms.MessageBox.Show(msgTag);
+            switch (msgTag)
             {
                 case "loggedin":
                     //System.Windows.Forms.MessageBox.Show("You have been logged in!");
@@ -74,6 +79,11 @@ namespace tikiClient
                 case "nouser":
                     //System.Windows.Forms.MessageBox.Show("Username not found!");
                     errorMsg = "Username not found!";
+                    break;
+                case "alert":
+                    msg = msg.Trim(msgTag.ToCharArray()); //removes tag
+                    msg = msg.Trim(toTrim); //removes end of tag
+                    errorMsg = msg; //raw msg
                     break;
                 default:
                     break;

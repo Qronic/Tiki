@@ -12,7 +12,7 @@ namespace tikiClient
 {
     public partial class LoginForm : Form
     {
-        
+        private string previousNetHandlerMsg = "";
 
         public LoginForm()
         {
@@ -82,8 +82,9 @@ namespace tikiClient
             {
                 MessageBox.Show("You have been logged in!");
             }
-            if(netHandler.errorMsg != "")
+            if(netHandler.errorMsg != "" && netHandler.errorMsg != previousNetHandlerMsg)
             {
+                previousNetHandlerMsg = netHandler.errorMsg;
                 MessageBox.Show(netHandler.errorMsg);
             }
         }
